@@ -1,0 +1,84 @@
+random_seed = 0
+
+[input]
+size = 10
+
+[[layers]]
+kind = "regular_feedforward"
+size = 20
+activation = "relu"
+
+[[layers]]
+kind = "dropout"
+pkeep = 0.80
+
+[[layers]]
+kind = "regular_feedforward"
+size = 10
+activation = "relu"
+
+[[layers]]
+kind = "dropout"
+pkeep = 0.80
+
+[[layers]]
+kind = "regular_feedforward"
+size = 10
+activation = "softmax"
+
+[cost]
+function = "softmax_cross_entropy"
+
+[accuracy]
+function = "argmax"
+
+[optimizer]
+function = "Adam"
+
+[optimizer.parameters]
+epsilon = 1e-4
+
+[optimizer.parameters.learning_rate]
+function = "exponential_decay"
+
+[optimizer.parameters.learning_rate.parameters]
+initial_rate = 0.003
+to = 0.0001
+decay_steps = 5000
+staircase = false
+
+[initial_weights]
+function = "truncated_normal"
+
+[initial_weights.parameters]
+stddev = 0.1
+
+[data]
+case_fraction = 1
+
+[data.source]
+function = "import_dataset"
+
+[data.source.parameters]
+filepath = "dataset.py"
+dataset = "wine"
+
+[validation]
+fraction = 0.01
+interval = 100
+
+[test]
+fraction = 0.1
+
+[minibatch]
+size = 100
+steps = 5000
+
+[visualization]
+weights = [1, 2, 3, 4]
+biasses = [1, 4]
+
+[visualization.map]
+size = 0
+layers = [0, 5]
+dendogram_layers = [5]
