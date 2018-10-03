@@ -1,27 +1,44 @@
-[dimensions.layers]
-num = 3
-size = 6
+random_seed = 0
 
-[dimensions.input]
+[input]
 size = 10
 
-[dimensions.output]
+[[layers]]
+kind = "regular_feedforward"
+size = 8
+activation = "sigmoid"
+
+[[layers]]
+kind = "regular_feedforward"
+size = 6
+activation = "sigmoid"
+
+[[layers]]
+kind = "regular_feedforward"
+size = 4
+activation = "sigmoid"
+
+[[layers]]
+kind = "regular_feedforward"
+size = 4
+activation = "sigmoid"
+
+[[layers]]
+kind = "regular_feedforward"
 size = 2
-
-[activation.layers]
-function = "sigmoid"
-
-[activation.output]
-function = "softmax"
+activation = "softmax"
 
 [cost]
 function = "mean_square_error"
+
+[accuracy]
+function = "argmax"
 
 [optimizer]
 function = "Adam"
 
 [optimizer.parameters]
-epsilon = 1e-4
+epsilon = 1e-3
 # learning_rate = 0.04
 
 [optimizer.parameters.learning_rate]
@@ -29,13 +46,16 @@ function = "exponential_decay"
 
 [optimizer.parameters.learning_rate.parameters]
 initial_rate = 0.05
+to = 0.0001
 decay_steps = 10000
-decay_rate = 0.98
 staircase = false
 
 [initial_weights]
-lower = -4
-upper = 4
+function = "random_uniform"
+
+[initial_weights.parameters]
+low = -4
+high = 4
 
 [data]
 case_fraction = 1.0
