@@ -1,12 +1,12 @@
 [dimensions.layers]
-num = 3
-size = 6
+num = 2
+size = 32
 
 [dimensions.input]
-size = 10
+size = 784
 
 [dimensions.output]
-size = 2
+size = 10
 
 [activation.layers]
 function = "sigmoid"
@@ -22,13 +22,12 @@ function = "Adam"
 
 [optimizer.parameters]
 epsilon = 1e-4
-# learning_rate = 0.04
 
 [optimizer.parameters.learning_rate]
 function = "exponential_decay"
 
 [optimizer.parameters.learning_rate.parameters]
-initial_rate = 0.05
+initial_rate = 0.06
 decay_steps = 10000
 decay_rate = 0.98
 staircase = false
@@ -38,25 +37,25 @@ lower = -4
 upper = 4
 
 [data]
-case_fraction = 1.0
+case_fraction = 0.1
 
 [data.source]
 function = "import_dataset"
 
 [data.source.parameters]
-filepath = "generate_pairity.py"
-dataset = "parity_cases"
+filepath = "dataset.py"
+dataset = "mnist"
 
 [validation]
 fraction = 0.1
-interval = 10
+interval = 100
 
 [test]
 fraction = 0.1
 
 [minibatch]
 size = 100
-steps = 7000
+steps = 5000
 
 [visualization]
 weights = [1, 2, 3, 4]

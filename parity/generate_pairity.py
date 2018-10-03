@@ -21,11 +21,11 @@ class AllPairityCases(Dataset):
 
     def nth_case(self, n):
         v = self.bitvec(n)
-        return (v, self.parity(v))
+        return (v, [1, 0] if self.parity(v) else [0, 1])
 
     @property
     def size(self):
         return 2**self.len
 
 
-parity_cases = AllPairityCases(4)
+parity_cases = AllPairityCases(10)
