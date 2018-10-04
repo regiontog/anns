@@ -5,21 +5,8 @@ size = 10
 
 [[layers]]
 kind = "regular_feedforward"
-size = 20
-activation = "relu"
-
-[[layers]]
-kind = "dropout"
-pkeep = 0.80
-
-[[layers]]
-kind = "regular_feedforward"
-size = 10
-activation = "relu"
-
-[[layers]]
-kind = "dropout"
-pkeep = 0.80
+size = 8
+activation = "sigmoid"
 
 [[layers]]
 kind = "regular_feedforward"
@@ -27,10 +14,10 @@ size = 10
 activation = "softmax"
 
 [cost]
-function = "softmax_cross_entropy"
+function = "mean_square_error"
 
 [accuracy]
-function = "argmax"
+function = "rounded_equal"
 
 [optimizer]
 function = "Adam"

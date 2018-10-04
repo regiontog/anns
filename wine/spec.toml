@@ -8,16 +8,10 @@ kind = "regular_feedforward"
 size = 8
 activation = "sigmoid"
 
-	[layers.visualization]
-	weights = true
-
 [[layers]]
 kind = "regular_feedforward"
 size = 6
 activation = "softmax"
-
-	#[[layers.visualization]]
-	#biasses = true
 
 [cost]
 function = "mean_square_error"
