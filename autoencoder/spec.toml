@@ -5,23 +5,19 @@ size = 8
 
 [[layers]]
 kind = "regular_feedforward"
-size = 10
+size = 3
 activation = "sigmoid"
 
-[[layers]]
-kind = "regular_feedforward"
-size = 5
-activation = "sigmoid"
-
-[[layers]]
-kind = "regular_feedforward"
-size = 10
-activation = "sigmoid"
+[layers.visualization]
+weights = true
 
 [[layers]]
 kind = "regular_feedforward"
 size = 8
 activation = "sigmoid"
+
+[layers.visualization]
+weights = true
 
 [cost]
 function = "mean_square_error"
@@ -59,7 +55,7 @@ function = "import_dataset"
 
 [data.source.parameters]
 filepath = "dataset.py"
-dataset = "autoencode_dense"
+dataset = "autoencode"
 
 [validation]
 fraction = 0.1
@@ -70,8 +66,8 @@ fraction = 0.1
 
 [minibatch]
 size = 100
-steps = 10000
+steps = 1000
 
 [visualization]
-size = 0
-dendogram_layers = []
+size = 8
+dendogram_layers = [0, 1, 2]

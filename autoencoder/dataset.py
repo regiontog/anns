@@ -4,20 +4,25 @@ from itertools import product
 import math
 
 
+
+
 class AutoencodeBitvector(Dataset):
     def __init__(self, len):
         self.len = len
 
     def bitvec(self, n):
-        return [1 if digit == '1' else 0 for digit in format(n, '0={}b'.format(self.len))]
+        return [1 if n == m else 0 for m in range(self.len)]
+
+    #def bitvec(self, n):
+    #    return [1 if digit == '1' else 0 for digit in format(n, '0={}b'.format(self.len))]
 
     def nth_case(self, n):
-        v = self.bitvec(n)
+        v = self.bitvec(n % self.len)
         return (v, v)
 
     @property
     def size(self):
-        return 2**self.len
+        return self.len * 100 # 2**self.len
 
 
 def factoradic(n):
