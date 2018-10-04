@@ -5,11 +5,6 @@ size = 9
 
 [[layers]]
 kind = "regular_feedforward"
-size = 8
-activation = "sigmoid"
-
-[[layers]]
-kind = "regular_feedforward"
 size = 6
 activation = "softmax"
 
