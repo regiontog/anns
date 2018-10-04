@@ -5,50 +5,25 @@ size = 11
 
 [[layers]]
 kind = "regular_feedforward"
-size = 200
-activation = "relu"
+size = 8
+activation = "sigmoid"
 
-[[layers]]
-kind = "dropout"
-pkeep = 0.80
-
-[[layers]]
-kind = "regular_feedforward"
-size = 100
-activation = "relu"
-
-[[layers]]
-kind = "dropout"
-pkeep = 0.80
-
-[[layers]]
-kind = "regular_feedforward"
-size = 60
-activation = "relu"
-
-[[layers]]
-kind = "dropout"
-pkeep = 0.80
-
-[[layers]]
-kind = "regular_feedforward"
-size = 30
-activation = "relu"
-
-[[layers]]
-kind = "dropout"
-pkeep = 0.80
+	[layers.visualization]
+	weights = true
 
 [[layers]]
 kind = "regular_feedforward"
 size = 6
 activation = "softmax"
 
+	#[[layers.visualization]]
+	#biasses = true
+
 [cost]
-function = "softmax_cross_entropy"
+function = "mean_square_error"
 
 [accuracy]
-function = "argmax"
+function = "rounded_equal"
 
 [optimizer]
 function = "Adam"
@@ -60,7 +35,7 @@ epsilon = 1e-4
 function = "exponential_decay"
 
 [optimizer.parameters.learning_rate.parameters]
-initial_rate = 0.003
+initial_rate = 0.006
 to = 0.0001
 decay_steps = 5000
 staircase = false
@@ -82,7 +57,7 @@ filepath = "dataset.py"
 dataset = "wine"
 
 [validation]
-fraction = 0.01
+fraction = 0.1
 interval = 100
 
 [test]
@@ -93,10 +68,5 @@ size = 100
 steps = 5000
 
 [visualization]
-weights = [1, 2, 3, 4]
-biasses = [1, 4]
-
-[visualization.map]
 size = 0
-layers = [0, 5]
-dendogram_layers = [5]
+dendogram_layers = []

@@ -8,10 +8,16 @@ kind = "regular_feedforward"
 size = 3
 activation = "relu"
 
+[layers.visualization]
+weights = true
+
 [[layers]]
 kind = "regular_feedforward"
 size = 1
 activation = "relu"
+
+[layers.visualization]
+weights = true
 
 [cost]
 function = "mean_square_error"
@@ -32,7 +38,7 @@ function = "exponential_decay"
 [optimizer.parameters.learning_rate.parameters]
 initial_rate = 0.05
 to = 0.0001
-decay_steps = 1000
+decay_steps = 400
 staircase = false
 
 [initial_weights]
@@ -60,13 +66,8 @@ fraction = 0.1
 
 [minibatch]
 size = 100
-steps = 1000
+steps = 400
 
 [visualization]
-weights = [1, 2, 3, 4]
-biasses = [1, 4]
-
-[visualization.map]
-size = 0
-layers = [0, 5]
-dendogram_layers = [5]
+size = 1000
+dendogram_layers = [0, 1, 2]

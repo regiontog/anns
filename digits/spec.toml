@@ -93,10 +93,6 @@ size = 100
 steps = 5000
 
 [visualization]
-weights = [1, 2, 3, 4]
-biasses = [1, 4]
-
-[visualization.map]
 size = 0
-layers = [0, 5]
-dendogram_layers = [5]
+dendogram_layers = []
+
