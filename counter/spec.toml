@@ -8,17 +8,10 @@ kind = "regular_feedforward"
 size = 3
 activation = "relu"
 
-[layers.visualization]
-weights = true
-
 [[layers]]
 kind = "regular_feedforward"
 size = 1
 activation = "relu"
-
-[layers.visualization]
-weights = true
-biasses = true
 
 [cost]
 function = "mean_square_error"
@@ -70,5 +63,5 @@ size = 100
 steps = 400
 
 [visualization]
-size = 1000
+size = 0
 dendogram_layers = [0, 1, 2]

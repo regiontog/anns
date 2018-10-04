@@ -5,11 +5,29 @@ size = 9
 
 [[layers]]
 kind = "regular_feedforward"
+size = 20
+activation = "sigmoid"
+
+[[layers]]
+kind = "dropout"
+pkeep = 20
+
+[[layers]]
+kind = "regular_feedforward"
+size = 20
+activation = "sigmoid"
+
+[[layers]]
+kind = "dropout"
+pkeep = 20
+
+[[layers]]
+kind = "regular_feedforward"
 size = 6
 activation = "softmax"
 
 [cost]
-function = "mean_square_error"
+function = "softmax_cross_entropy"
 
 [accuracy]
 function = "rounded_equal"
@@ -53,9 +71,9 @@ interval = 10
 fraction = 0.1
 
 [minibatch]
-size = 50
+size = 100
 steps = 5000
 
 [visualization]
-size = 0
-dendogram_layers = []
+size = 10
+dendogram_layers = [0, 1, 2]

@@ -2,15 +2,20 @@ from it3105.abc import Dataset
 from os import path
 import csv
 import math
+import random
+
 
 def bitvec(n):
     return [1 if n == m else 0 for m in range(6)]
 
+
 def mean(vec):
     return sum(vec) / len(vec)
 
+
 def std_deviation(vec, mean):
     return math.sqrt((1 / (len(vec) - 1)) * sum([(x - mean) ** 2 for x in vec]))
+
 
 def normalize(samples):
     feature_factors = []
@@ -19,18 +24,25 @@ def normalize(samples):
         fmean = mean(feature_column)
         fsdev = std_deviation(feature_column, fmean)
         feature_factors.append((fmean, fsdev))
-                
+
     for i in range(len(samples)):
-        samples[i] = [(samples[i][j] - feature_factors[j][0]) / feature_factors[j][1] for j in range(len(feature_factors))]
-    
+        samples[i] = [(samples[i][j] - feature_factors[j][0]) /
+                      feature_factors[j][1] for j in range(len(feature_factors))]
+
     return samples
+
 
 class GlassDataset(Dataset):
     def __init__(self, path):
         with open(path) as f:
-            data = [row for row in csv.reader(f, delimiter=',', quoting=csv.QUOTE_NONNUMERIC)]
+            data = [row for row in csv.reader(
+                f, delimiter=',', quoting=csv.QUOTE_NONNUMERIC)]
+
+            random.shuffle(data)
+
             self.samples = [row[:-1] for row in data]
-            self.labels = [bitvec(3) if row[-1] == 7 else bitvec(row[-1] - 1) for row in data]
+            self.labels = [bitvec(3) if row[-1] ==
+                           7 else bitvec(row[-1] - 1) for row in data]
         self.samples = normalize(self.samples)
 
     def nth_case(self, n):
@@ -39,5 +51,6 @@ class GlassDataset(Dataset):
     @property
     def size(self):
         return len(self.samples)
+
 
 glass = GlassDataset(path.join(path.dirname(__file__), 'glass/glass.txt'))

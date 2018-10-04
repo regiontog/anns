@@ -5,8 +5,28 @@ size = 10
 
 [[layers]]
 kind = "regular_feedforward"
-size = 8
+size = 200
 activation = "sigmoid"
+
+[[layers]]
+kind = "regular_feedforward"
+size = 100
+activation = "relu"
+
+[[layers]]
+kind = "regular_feedforward"
+size = 60
+activation = "relu"
+
+[[layers]]
+kind = "regular_feedforward"
+size = 30
+activation = "relu"
+
+[[layers]]
+kind = "regular_feedforward"
+size = 20
+activation = "relu"
 
 [[layers]]
 kind = "regular_feedforward"
@@ -14,7 +34,7 @@ size = 10
 activation = "softmax"
 
 [cost]
-function = "mean_square_error"
+function = "softmax_cross_entropy"
 
 [accuracy]
 function = "rounded_equal"
@@ -29,16 +49,16 @@ epsilon = 1e-4
 function = "exponential_decay"
 
 [optimizer.parameters.learning_rate.parameters]
-initial_rate = 0.003
+initial_rate = 0.06
 to = 0.0001
-decay_steps = 5000
+decay_steps = 10000
 staircase = false
 
 [initial_weights]
 function = "truncated_normal"
 
 [initial_weights.parameters]
-stddev = 0.1
+stddev = 0.2
 
 [data]
 case_fraction = 1
@@ -51,7 +71,7 @@ filepath = "dataset.py"
 dataset = "wine"
 
 [validation]
-fraction = 0.01
+fraction = 0.1
 interval = 100
 
 [test]
@@ -59,8 +79,8 @@ fraction = 0.1
 
 [minibatch]
 size = 100
-steps = 5000
+steps = 10000
 
 [visualization]
-size = 0
-dendogram_layers = []
+size = 8
+dendogram_layers = [0, 1, 2]
